@@ -2,7 +2,7 @@ package me.adzuki.common
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -21,7 +21,7 @@ fun ClockText(
     modifier = modifier,
     fontSize = fontSize,
     fontFamily = FontFamily(PlatformFont.clockFace),
-    color = Color.White,
+//    color = Color.White,
 )
 
 @OptIn(ExperimentalAnimationApi::class)

@@ -1,18 +1,18 @@
 package me.adzuki.common
 
-import androidx.compose.material.*
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App(
     exit: () -> Unit = { },
     toggleFullscreen: () -> Unit = { },
 ) {
     MaterialTheme(
-        colors = darkColors(background = Color.Black)
     ) {
         var isMenuVisible by remember { mutableStateOf(false) }
 

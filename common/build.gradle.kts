@@ -19,6 +19,8 @@ kotlin {
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                api(compose.material3)
             }
         }
         @Suppress("UNUSED_VARIABLE")
