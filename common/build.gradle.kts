@@ -34,7 +34,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("androidx.appcompat:appcompat:1.6.1")
-                api("androidx.core:core-ktx:1.10.0")
+                api("androidx.core:core-ktx:1.10.1")
             }
         }
         @Suppress("UNUSED_VARIABLE")
@@ -68,5 +68,5 @@ android {
     namespace = "me.adzuki.common"
 }
 dependencies {
-    implementation("androidx.core:core-ktx:1.10.0")
+    implementation("androidx.core:core-ktx:1.10.1")
 }
