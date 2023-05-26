@@ -3,18 +3,23 @@ package me.adzuki.common
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.DarkMode
+import androidx.compose.material.icons.outlined.ExitToApp
+import androidx.compose.material.icons.outlined.Fullscreen
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun Menu(
     isVisible: Boolean,
-    exit: () -> Unit,
-    toggleFullscreen: () -> Unit,
 ) {
     AnimatedVisibility(
         visible = isVisible,
@@ -24,15 +29,27 @@ fun Menu(
     ) {
         Center {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(25.dp),
+                horizontalArrangement = Arrangement.spacedBy(24.dp),
             ) {
-                MenuButton(onClick = { exit() }) {
-                    Text("Exit")
-                }
+                val operations = LocalPlatformOperations.current
 
-                MenuButton(onClick = { toggleFullscreen() }) {
-                    Text("Fullscreen")
-                }
+                MenuButton(
+                    text = "Exit",
+                    icon = Icons.Outlined.ExitToApp,
+                    onClick = { operations.exit() },
+                )
+
+                MenuButton(
+                    text = "Fullscreen",
+                    icon = Icons.Outlined.Fullscreen,
+                    onClick = { operations.toggleFullscreen() },
+                )
+
+                MenuButton(
+                    text = "Dark Mode",
+                    icon = Icons.Outlined.DarkMode,
+                    onClick = { operations.toggleDarkMode() },
+                )
             }
         }
     }
@@ -40,13 +57,24 @@ fun Menu(
 
 @Composable
 private fun MenuButton(
+    text: String,
+    icon: ImageVector,
     onClick: () -> Unit = { },
-    content: @Composable RowScope.() -> Unit
 ) {
     Button(
+        modifier = Modifier.width(192.dp).height(128.dp),
         onClick = onClick,
-        modifier = Modifier.width(150.dp).height(150.dp),
     ) {
-        content()
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Icon(
+                icon,
+                contentDescription = text,
+                modifier = Modifier.size(48.dp),
+            )
+            Text(text)
+        }
     }
 }

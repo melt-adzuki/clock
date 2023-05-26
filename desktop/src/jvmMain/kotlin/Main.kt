@@ -1,11 +1,11 @@
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import me.adzuki.common.App
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import me.adzuki.common.DesktopApp
 
 fun main() = application {
     var isFullscreen by remember { mutableStateOf(false) }
@@ -23,7 +23,7 @@ fun main() = application {
         state = windowState,
         onCloseRequest = ::exitApplication,
     ) {
-        App(
+        DesktopApp(
             exit = ::exitApplication,
             toggleFullscreen = { isFullscreen = !isFullscreen }
         )

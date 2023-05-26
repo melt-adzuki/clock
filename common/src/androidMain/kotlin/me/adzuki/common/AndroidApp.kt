@@ -1,31 +1,41 @@
 package me.adzuki.common
 
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import me.adzuki.common.theme.AppTheme
 
 @Composable
 fun AndroidApp() {
-    var showWrongOperationDialog by remember { mutableStateOf(false) }
+    var isDarkModeToggled by remember { mutableStateOf(false) }
+    val isDarkMode = isDarkModeToggled xor isSystemInDarkTheme()
 
-    App(
-        exit = { showWrongOperationDialog = !showWrongOperationDialog },
-        toggleFullscreen = { showWrongOperationDialog = !showWrongOperationDialog },
-    )
+    AppTheme(useDarkTheme = isDarkMode) {
+        var showWrongOperationDialog by remember { mutableStateOf(false) }
 
-    if (showWrongOperationDialog) AlertDialog(
-        onDismissRequest = { },
-        title = { Text("エラー") },
-        text = { Text("Android端末でこの操作を実行することはできません。") },
-        confirmButton = {
-            TextButton(onClick = { showWrongOperationDialog = !showWrongOperationDialog }) {
-                Text("OK")
-            }
-        },
-    )
+        App(
+            platformOperations = PlatformOperations(
+                exit = { showWrongOperationDialog = !showWrongOperationDialog },
+                toggleFullscreen = { showWrongOperationDialog = !showWrongOperationDialog },
+                toggleDarkMode = { isDarkModeToggled = !isDarkModeToggled },
+            )
+        )
+
+        if (showWrongOperationDialog) AlertDialog(
+            onDismissRequest = { },
+            title = { Text("エラー") },
+            text = { Text("Android端末でこの操作を実行することはできません。") },
+            confirmButton = {
+                TextButton(onClick = { showWrongOperationDialog = !showWrongOperationDialog }) {
+                    Text("OK")
+                }
+            },
+        )
+    }
 }
