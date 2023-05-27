@@ -2,6 +2,7 @@ package me.adzuki.common
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import me.adzuki.common.theme.AppTheme
 
 
@@ -10,7 +11,7 @@ fun DesktopApp(
     exit: () -> Unit,
     toggleFullscreen: () -> Unit,
 ) {
-    var isDarkModeToggled by remember { mutableStateOf(false) }
+    var isDarkModeToggled by rememberSaveable { mutableStateOf(false) }
     val isDarkMode = isDarkModeToggled xor isSystemInDarkTheme()
 
     AppTheme(useDarkTheme = isDarkMode) {

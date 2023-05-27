@@ -8,7 +8,7 @@ import androidx.compose.runtime.*
 fun App(
     platformOperations: PlatformOperations,
 ) = CompositionLocalProvider(LocalPlatformOperations provides platformOperations) {
-    var isMenuVisible by remember { mutableStateOf(false) }
+    var isMenuVisible by mutableStateOf(false)
 
     Scaffold(
         floatingActionButton = {
