@@ -20,6 +20,7 @@ kotlin {
             dependencies {
                 implementation(project(":common"))
                 implementation(compose.desktop.currentOs)
+                implementation(compose.desktop.linux_arm64)
             }
         }
         @Suppress("UNUSED_VARIABLE")
@@ -31,7 +32,7 @@ compose.desktop {
     application {
         mainClass = "MainKt"
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            targetFormats(TargetFormat.Exe, TargetFormat.AppImage, TargetFormat.Dmg)
             packageName = "clock"
             packageVersion = "1.0.0"
         }
