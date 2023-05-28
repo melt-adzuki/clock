@@ -6,7 +6,6 @@ import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.time.Duration.Companion.nanoseconds
-import kotlin.time.Duration.Companion.seconds
 
 val datePattern = DateTimeFormatter.ofPattern("MM/dd (E)")!!
 
