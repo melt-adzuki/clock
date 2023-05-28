@@ -29,9 +29,9 @@ fun useClockState(): DateTime {
     LaunchedEffect(Unit) {
         while (true) {
             date = LocalDateTime.now()
+            tick = true
             launch {
-                tick = true
-                delay(0.5.seconds)
+                delay((500_000_000 - date.nano).nanoseconds)
                 tick = false
             }
             delay((1_000_000_000 - date.nano).nanoseconds)
